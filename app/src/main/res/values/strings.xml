@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Akchday1</string>
-    <string name="main_text">Мое первое приложение</string>
-    <string name="student_info">Студент: Акчибаш\nГруппа: 3.2Исип-2</string>
+    <string name="main_text">My First Application</string>
+    <string name="student_info">Student: Akchibash\nGroup: 3.2Isip2</string>
+
 </resources>
