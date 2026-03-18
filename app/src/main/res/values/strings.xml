@@ -2,5 +2,17 @@
     <string name="app_name">Akchday1</string>
     <string name="main_text">My First Application</string>
     <string name="student_info">Student: Akchibash\nGroup: 3.2Isip2</string>
-
+    <string name="avatar_description">Аватар автора</string>
+    <string name="menu_description">Меню</string>
+    <string name="like_description">Нравится</string>
+    <string name="share_description">Поделиться</string>
+    <string name="views_description">Просмотры</string>
+    <string name="moytext">Шикарная победа над принципиальным соперником! Выиграли 3:2, отыгравшись с 0:2 по партиям. Команда проявила характер. Лучшим игроком матча признан наш диагональный, набравший 28 очков. Спасибо болельщикам за поддержку!</string>
+    <string name="text1">Волейбольный клуб "Зенит-Казань"</string>
+    <string name="text2">Сегодня в 20:45</string>
+    <string name="text3">Зенит - Локомотив: видео лучших моментов</string>
+    <string name="text4">volley.ru</string>
+    <string name="text5">25</string>
+    <string name="text6">150</string>
+    <string name="text7">1.2К</string>
 </resources>
