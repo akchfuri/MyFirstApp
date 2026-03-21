@@ -8,8 +8,7 @@ import ru.akchibash.akchday1.databinding.CardPostBinding
 import ru.akchibash.akchday1.dto.Post
 
 class PostsAdapter(
-    private val onLikeClickListener: (Post) -> Unit,
-    private val onShareClickListener: (Post) -> Unit
+    private val listener: OnPostInteractionListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
@@ -18,11 +17,12 @@ class PostsAdapter(
             parent,
             false
         )
-        return PostViewHolder(binding, onLikeClickListener, onShareClickListener)
+        return PostViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        val post = getItem(position)  // getItem предоставляет ListAdapter
+        val post = getItem(position)
         holder.bind(post)
     }
 }
+
