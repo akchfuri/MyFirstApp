@@ -30,10 +30,13 @@ class MainActivity : AppCompatActivity() {
         }
         override fun onEdit(post: Post) {
             editingPostId = post.id
-            binding.content.setText(post.content)
-            binding.content.setSelection(binding.content.text.length)
-            binding.content.requestFocus()
-            showKeyboard(binding.content)
+            binding.contentEditText.setText(post.content)
+            // безопасный вызов для length и setSelection
+            binding.contentEditText.text?.let { editable ->
+                binding.contentEditText.setSelection(editable.length)
+            }
+            binding.contentEditText.requestFocus()
+            showKeyboard(binding.contentEditText)
             binding.cancelGroup.visibility = View.VISIBLE
         }
         override fun onRemove(post: Post) {
@@ -59,37 +62,34 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         }
 
-        binding.content.addTextChangedListener { text ->
-
+        binding.contentEditText.addTextChangedListener { text ->
             viewModel.changeContent(text.toString())
         }
 
         binding.save.setOnClickListener {
-            val text = binding.content.text.toString()
+            val text = binding.contentEditText.text?.toString() ?: ""  // безопасное получение текста
             if (text.isBlank()) {
-                Toast.makeText(this, "Введите текст поста",
-                    Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Введите текст поста", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (editingPostId != 0L) {
-
-
-                        viewModel.saveEditedPost(editingPostId, text)
+                viewModel.saveEditedPost(editingPostId, text)
                 editingPostId = 0L
             } else {
                 viewModel.changeContent(text)
                 viewModel.save()
             }
-            binding.content.text.clear()
+            // безопасная очистка
+            binding.contentEditText.text?.clear()
             binding.cancelGroup.visibility = View.GONE
-            hideKeyboard(binding.content)
+            hideKeyboard(binding.contentEditText)
         }
         binding.cancel.setOnClickListener {
             editingPostId = 0L
-            binding.content.text.clear()
+            binding.contentEditText.text?.clear()
             binding.cancelGroup.visibility = View.GONE
-            hideKeyboard(binding.content)
+            hideKeyboard(binding.contentEditText)
             viewModel.cancelEdit()
         }
     }
