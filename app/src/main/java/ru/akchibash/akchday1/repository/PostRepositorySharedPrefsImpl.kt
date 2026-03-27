@@ -24,6 +24,7 @@ class PostRepositorySharedPrefsImpl(
     private val currentUserId = 1L
     private val currentUserName = "Я"
 
+
     private var posts = emptyList<Post>()
     private val _data = MutableLiveData(posts)
 
@@ -72,7 +73,7 @@ class PostRepositorySharedPrefsImpl(
         saveData()
     }
 
-    override fun save(post: Post) {
+    override fun save(post: Post): Post {
         posts = if (post.id == 0L) {
             val newPost = post.copy(
                 id = nextId++,
@@ -96,6 +97,7 @@ class PostRepositorySharedPrefsImpl(
         }
         _data.value = posts
         saveData()
+        return TODO("Provide the return value")
     }
 
     override fun removeById(id: Long) {
